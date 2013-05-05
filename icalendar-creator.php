@@ -55,6 +55,7 @@ class iCalendarCreator {
 	 * @since 1.0.0
 	 *
 	 * @param null|string $event_description Description of the event.
+	 * return void
 	 */
 	public function set_event_description( $event_description = null ) {
 		if ( !empty( $event_description ) ) {
@@ -63,11 +64,12 @@ class iCalendarCreator {
 	}
 
 	/**
-	 * Checks for, validates, and assigns the
+	 * Checks for, validates, and assigns the time zone.
 	 *
 	 * @since 1.0.0
 	 *
 	 * @param null $time_zone
+	 * return void
 	 */
 	public function set_time_zone( $time_zone = null ) {
 		if ( !empty( $time_zone ) ) {
@@ -75,18 +77,42 @@ class iCalendarCreator {
 		}
 	}
 
+	/**
+	 * Checks for, validates, and assigns the event start time.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param null $event_start
+	 * return void
+	 */
 	public function set_event_start( $event_start = null ) {
 		if ( empty( $event_start ) ) {
 			$this->event_start = $event_start;
 		}
 	}
 
+	/**
+	 * Checks for, validates, and assigns the event end time.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param null $event_end
+	 * return void
+	 */
 	public function set_event_end( $event_end = null ) {
 		if ( empty( $event_end ) ) {
 			$this->event_end = $event_end;
 		}
 	}
 
+	/**
+	 * Checks for, validates, and assigns the venue.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param null $venue
+	 * return void
+	 */
 	public function set_venue( $venue = null ) {
 		if ( ( !empty( $venue ) ) || !is_array( $venue ) ) {
 			$this->venue[ 'venue_name' ] = $venue[ 'venue_name' ];
