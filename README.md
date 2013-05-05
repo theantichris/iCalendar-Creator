@@ -1,4 +1,4 @@
-iCalendar-Creater
+iCalendar-Creator
 =================
 
 Class for creating iCalendar (ics) files.
