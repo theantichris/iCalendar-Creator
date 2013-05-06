@@ -125,6 +125,11 @@ class iCalendarCreator {
 	}
 
 	public function create_ics_file() {
+		/** @var string $start Formatted start date and time. */
+		$start = date( 'Ymd', $this->event_start + 18000 ) . 'T' . date( 'His', $this->event_start + 18000 ) . 'Z';
+		/** @var string $end Formatted end date and time. */
+		$end = date( 'Ymd', $this->event_end + 18000 ) . 'T' . date( 'His', $this->event_end + 18000 ) . 'Z';
+
 		/** @var string $location Venue information combined into one string. */
 		$location = $this->venue[ 'venue_name' ] . ', ' . $this->venue[ 'venue_address' ] . ', ';
 		$location .= $this->venue[ 'venue_address_two' ] . ', ' . $this->venue[ 'venue_city' ] . ', ';
@@ -139,8 +144,8 @@ class iCalendarCreator {
 		echo "BEGIN:VEVENT\n";
 		echo "UID:" . date( 'Ymd' ) . 'T' . date( 'His' ) . "-" . rand() . "-eventbooking.com\n"; // Required by Outlook.
 		echo "DTSTAMP:" . date( 'Ymd' ) . 'T' . date( 'His' ) . "\n"; // Required by Outlook.
-		echo "DTSTART:{$this->event_start}\n";
-		echo "DTEND:{$this->event_end}\n";
+		echo "DTSTART:{$start}\n";
+		echo "DTEND:{$end}\n";
 		echo "LOCATION:{$location}\n";
 		echo "SUMMARY:{$this->event_name}\n";
 		echo "DESCRIPTION: {$this->event_description}\n";
