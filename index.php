@@ -1,26 +1,28 @@
 <?php
 /**
- * Created by JetBrains PhpStorm.
- * User: christopher
- * Date: 5/5/13
- * Time: 3:08 PM
- * To change this template use File | Settings | File Templates.
+ * Creates an iCalendar file.
+ *
+ * @package iCalendarFile
+ * @since 1.0.0
  */
 
-?>
+include( 'icalendar-creator.php' );
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<head>
-	<meta charset="utf-8" />
+$icalendar = new iCalendarFile( 1, 'Test Event' );
+$icalendar->set_event_description( 'This is the description for Test Event.' );
+$icalendar->set_event_start( mktime( 8 ) );
+$icalendar->set_event_end( mktime( 18 ) );
+$icalendar->set_time_zone( 'America/Chicago' );
 
-	<title>iCalendar Creator</title>
-</head>
+$venue = array(
+	'venue_name' => 'Test Venue',
+	'venue_address' => '2138 Wilson Rd.',
+	'venue_address_two' => 'Apt. B9',
+	'venue_city' => 'Knoxville',
+	'venue_state' => 'TN',
+	'venue_postal_code' => '37912'
+);
 
-<body>
+$icalendar->set_venue( $venue );
 
-<h1>iCalendar Creator</h1>
-
-</body>
-
-</html>
+$icalendar->create_ics_file();

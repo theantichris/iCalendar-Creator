@@ -1,17 +1,17 @@
 <?php
 /**
- * iCalendarCreator class file.
+ * iCalendarFile class file.
  *
- * @package iCalendarCreator
+ * @package iCalendarFile
  * @version 1.0.0
  */
 
 /**
- * Class iCalendarCreator
+ * Class iCalendarFile
  *
  * @since 1.0.0
  */
-class iCalendarCreator {
+class iCalendarFile {
 	public $event_id;
 	public $file_name;
 	public $event_name;
@@ -139,10 +139,10 @@ class iCalendarCreator {
 		header( "Content-Disposition: inline; filename={$this->file_name}" );
 		echo "BEGIN:VCALENDAR\n";
 		echo "VERSION:2.0\n";
-		echo "PRODID:-//LearnPHP.co//NONSGML {$this->event_name}//EN\n";
+		echo "PRODID:-//theantichris.com//NONSGML {$this->event_name}//EN\n";
 		echo "METHOD:REQUEST\n"; // Required by Outlook.
 		echo "BEGIN:VEVENT\n";
-		echo "UID:" . date( 'Ymd' ) . 'T' . date( 'His' ) . "-" . rand() . "-eventbooking.com\n"; // Required by Outlook.
+		echo "UID:" . date( 'Ymd' ) . 'T' . date( 'His' ) . "-" . rand() . "-theantichris.com\n"; // Required by Outlook.
 		echo "DTSTAMP:" . date( 'Ymd' ) . 'T' . date( 'His' ) . "\n"; // Required by Outlook.
 		echo "DTSTART:{$start}\n";
 		echo "DTEND:{$end}\n";
