@@ -45,7 +45,7 @@ class iCalendarCreator {
 		} else {
 			$this->event_id = $event_id;
 			$this->event_name = $event_name;
-			$this->file_name = $event_name . 'ics';
+			$this->file_name = strtolower( str_replace( array( ' ', "'", '.' ), array( '_', '', '' ), $event_name ) ) . '.ics';
 		}
 	}
 
@@ -126,9 +126,9 @@ class iCalendarCreator {
 
 	public function create_ics_file() {
 		/** @var string $start Formatted start date and time. */
-		$start = date( 'Ymd', $this->event_start + 18000 ) . 'T' . date( 'His', $this->event_start + 18000 ) . 'Z';
+		$start = date( 'Ymd', $this->event_start + 21000 ) . 'T' . date( 'His', $this->event_start + 21000 ) . 'Z';
 		/** @var string $end Formatted end date and time. */
-		$end = date( 'Ymd', $this->event_end + 18000 ) . 'T' . date( 'His', $this->event_end + 18000 ) . 'Z';
+		$end = date( 'Ymd', $this->event_end + 21000 ) . 'T' . date( 'His', $this->event_end + 21000 ) . 'Z';
 
 		/** @var string $location Venue information combined into one string. */
 		$location = $this->venue[ 'venue_name' ] . ', ' . $this->venue[ 'venue_address' ] . ', ';
