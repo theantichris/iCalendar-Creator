@@ -12,14 +12,14 @@
  * @since 1.0.0
  */
 class iCalendarCreator {
-	private $event_id;
-	private $file_name;
-	private $event_name;
-	private $event_description;
-	private $time_zone;
-	private $event_start;
-	private $event_end;
-	private $venue = array(
+	public $event_id;
+	public $file_name;
+	public $event_name;
+	public $event_description;
+	public $time_zone;
+	public $event_start;
+	public $event_end;
+	public $venue = array(
 		'venue_name',
 		'venue_address',
 		'venue_address_two',
@@ -122,6 +122,30 @@ class iCalendarCreator {
 			$this->venue[ 'venue_state' ] = $venue[ 'venue_state' ];
 			$this->venue[ 'venue_postal_code' ] = $venue[ 'venue_postal_code' ];
 		}
+	}
+
+	public function create_ics_file() {
+		/** @var string $location Venue information combined into one string. */
+		$location = $this->venue[ 'venue_name' ] . ', ' . $this->venue[ 'venue_address' ] . ', ';
+		$location .= $this->venue[ 'venue_address_two' ] . ', ' . $this->venue[ 'venue_city' ] . ', ';
+		$location .= $this->venue[ 'venue_state' ] . ' ' . $this->venue[ 'venue_postal_code' ];
+
+		header( "Content-Type: text/Calendar; charset=utf-8" );
+		header( "Content-Disposition: inline; filename={$this->file_name}" );
+		echo "BEGIN:VCALENDAR\n";
+		echo "VERSION:2.0\n";
+		echo "PRODID:-//LearnPHP.co//NONSGML {$this->event_name}//EN\n";
+		echo "METHOD:REQUEST\n"; // Required by Outlook.
+		echo "BEGIN:VEVENT\n";
+		echo "UID:" . date( 'Ymd' ) . 'T' . date( 'His' ) . "-" . rand() . "-eventbooking.com\n"; // Required by Outlook.
+		echo "DTSTAMP:" . date( 'Ymd' ) . 'T' . date( 'His' ) . "\n"; // Required by Outlook.
+		echo "DTSTART:{$this->event_start}\n";
+		echo "DTEND:{$this->event_end}\n";
+		echo "LOCATION:{$location}\n";
+		echo "SUMMARY:{$this->event_name}\n";
+		echo "DESCRIPTION: {$this->event_description}\n";
+		echo "END:VEVENT\n";
+		echo "END:VCALENDAR\n";
 	}
 
 }
