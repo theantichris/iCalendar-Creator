@@ -138,10 +138,10 @@ class iCalendarFile {
 	 * @return void
 	 */
 	public function create_ics_file() {
-		/** @var string $start Formatted start date and time. 21000 second are added to make it Zulu time. */
-		$start = date( 'Ymd', $this->event_start + 21000 ) . 'T' . date( 'His', $this->event_start + 21000 ) . 'Z';
-		/** @var string $end Formatted end date and time. 21000 second are added to make it Zulu time. */
-		$end = date( 'Ymd', $this->event_end + 21000 ) . 'T' . date( 'His', $this->event_end + 21000 ) . 'Z';
+		/** @var string $start Formatted start date and time. 14400 second are added to make it Zulu time. */
+		$start = date( 'Ymd', $this->event_start + 14400 ) . 'T' . date( 'His', $this->event_start + 14400 ) . 'Z';
+		/** @var string $end Formatted end date and time. 14400 second are added to make it Zulu time. */
+		$end = date( 'Ymd', $this->event_end + 14400 ) . 'T' . date( 'His', $this->event_end + 14400 ) . 'Z';
 
 		/** @var string $location Venue information combined into one string. */
 		$location = $this->venue[ 'venue_name' ] . ', ' . $this->venue[ 'venue_address' ] . ', ';
@@ -174,10 +174,10 @@ class iCalendarFile {
 	 * @return void
 	 */
 	public function html_ics_file() {
-		/** @var string $start Formatted start date and time. 21000 second are added to make it Zulu time. */
-		$start = date( 'Ymd', $this->event_start + 21000 ) . 'T' . date( 'His', $this->event_start + 21000 ) . 'Z';
-		/** @var string $end Formatted end date and time. 21000 second are added to make it Zulu time. */
-		$end = date( 'Ymd', $this->event_end + 21000 ) . 'T' . date( 'His', $this->event_end + 21000 ) . 'Z';
+		/** @var string $start Formatted start date and time. 14400 second are added to make it Zulu time. */
+		$start = date( 'Ymd', $this->event_start + 14400 ) . 'T' . date( 'His', $this->event_start + 14400 ) . 'Z';
+		/** @var string $end Formatted end date and time. 14400 second are added to make it Zulu time. */
+		$end = date( 'Ymd', $this->event_end + 14400 ) . 'T' . date( 'His', $this->event_end + 14400 ) . 'Z';
 
 		/** @var string $location Venue information combined into one string. */
 		$location = $this->venue[ 'venue_name' ] . ', ' . $this->venue[ 'venue_address' ] . ', ';
@@ -191,7 +191,7 @@ class iCalendarFile {
 		echo "BEGIN:VEVENT<br />";
 		echo "UID:" . date( 'Ymd' ) . 'T' . date( 'His' ) . "-" . rand() . "-theantichris.com<br />"; // Required by Outlook.
 		echo "DTSTAMP:" . date( 'Ymd' ) . 'T' . date( 'His' ) . "<br />"; // Required by Outlook.
-		echo "DTSTART:{$start}<br />";
+		echo "DTSTART:{$start}" . "<br />";
 		echo "DTEND:{$end}<br />";
 		echo "LOCATION:{$location}<br />";
 		echo "SUMMARY:{$this->event_name}<br />";

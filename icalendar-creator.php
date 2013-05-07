@@ -23,8 +23,8 @@ $event_description = 'This is the description for Test Event.';
 $event_time_zone = 'America/Chicago';
 date_default_timezone_set( $event_time_zone );
 
-$event_start = time();
-$event_end = time();
+$event_start = mktime( 8, 0, 0 );
+$event_end = mktime( 18, 0, 0 );
 
 $venue = array(
 	'venue_name' => 'Test Venue',
@@ -47,6 +47,6 @@ $icalendar->set_time_zone( $event_time_zone );
 
 $icalendar->set_venue( $venue );
 
-// $icalendar->create_ics_file();
+$icalendar->create_ics_file();
 
 $icalendar->html_ics_file();
