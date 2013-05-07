@@ -18,6 +18,8 @@ class iCalendarFile {
 	public $file_name;
 	public $event_name;
 	public $event_description;
+	public $organizer;
+	public $organizer_email;
 	public $time_zone;
 	public $time_zone_object;
 	public $utc_offset;
@@ -64,6 +66,36 @@ class iCalendarFile {
 	public function set_event_description( $event_description = null ) {
 		if ( !empty( $event_description ) ) {
 			$this->event_description = $event_description;
+		}
+	}
+
+	/**
+	 * Checks for, validates, and assigns the event organizer.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param null|string $organizer Organizer of the event.
+	 *
+	 * @return void
+	 */
+	public function set_organizer( $organizer = null ) {
+		if ( !empty( $organizer ) ) {
+			$this->organizer = $organizer;
+		}
+	}
+
+	/**
+	 * Checks for, validates, and assigns the event organizer's email.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param null|string $organizer_email Organizer's email.
+	 *
+	 * @return void
+	 */
+	public function set_organizer_email( $organizer_email = null ) {
+		if ( !empty( $organizer_email ) ) {
+			$this->organizer_email = $organizer_email;
 		}
 	}
 
@@ -156,11 +188,12 @@ class iCalendarFile {
 		header( "Content-Disposition: inline; filename={$this->file_name}" );
 		echo "BEGIN:VCALENDAR\n";
 		echo "VERSION:2.0\n";
-		echo "PRODID:-//theantichris.com//NONSGML {$this->event_name}//EN\n";
-		echo "METHOD:REQUEST\n"; // Required by Outlook.
+		echo "PRODID:-//{$this->organizer}//NONSGML {$this->event_name}//EN\n";
+		echo "METHOD:REQUEST\n";
 		echo "BEGIN:VEVENT\n";
-		echo "UID:" . date( 'Ymd' ) . 'T' . date( 'His' ) . "-" . rand() . "-theantichris.com\n"; // Required by Outlook.
-		echo "DTSTAMP:" . date( 'Ymd' ) . 'T' . date( 'His' ) . "\n"; // Required by Outlook.
+		echo "UID:" . date( 'Ymd' ) . 'T' . date( 'His' ) . "-" . rand() . "-{$this->organizer}\n"; // Required by Outlook.
+		echo "DTSTAMP:" . date( 'Ymd' ) . 'T' . date( 'His' ) . "\n";
+		echo "ORGANIZER:CN={$this->organizer}:MAILTO:{$this->organizer_email}\n";
 		echo "DTSTART:{$start}\n";
 		echo "DTEND:{$end}\n";
 		echo "LOCATION:{$location}\n";
@@ -190,18 +223,19 @@ class iCalendarFile {
 
 		echo "BEGIN:VCALENDAR<br />";
 		echo "VERSION:2.0<br />";
-		echo "PRODID:-//theantichris.com//NONSGML {$this->event_name}//EN<br />";
-		echo "METHOD:REQUEST<br />"; // Required by Outlook.
+		echo "PRODID:-//{$this->organizer}//NONSGML {$this->event_name}//EN<br />";
+		echo "METHOD:REQUEST<br />";
 		echo "BEGIN:VEVENT<br />";
-		echo "UID:" . date( 'Ymd' ) . 'T' . date( 'His' ) . "-" . rand() . "-theantichris.com<br />"; // Required by Outlook.
-		echo "DTSTAMP:" . date( 'Ymd' ) . 'T' . date( 'His' ) . "<br />"; // Required by Outlook.
-		echo "DTSTART:{$start}" . "<br />";
+		echo "UID:" . date( 'Ymd' ) . 'T' . date( 'His' ) . "-" . rand() . "-{$this->organizer}<br />"; // Required by Outlook.
+		echo "DTSTAMP:" . date( 'Ymd' ) . 'T' . date( 'His' ) . "<br />";
+		echo "ORGANIZER:CN={$this->organizer}:MAILTO:{$this->organizer_email}<br />";
+		echo "DTSTART:{$start}<br />";
 		echo "DTEND:{$end}<br />";
 		echo "LOCATION:{$location}<br />";
 		echo "SUMMARY:{$this->event_name}<br />";
 		echo "DESCRIPTION: {$this->event_description}<br />";
 		echo "END:VEVENT<br />";
-		echo "END:VCALENDAR";
+		echo "END:VCALENDAR<br />";
 	}
 
 }
