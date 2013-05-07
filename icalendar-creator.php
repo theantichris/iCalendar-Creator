@@ -2,7 +2,7 @@
 /**
  * Creates an iCalendar file.
  *
- * @package iCalendarFile
+ * @package iCalendarCreator
  * @since 1.0.0
  */
 

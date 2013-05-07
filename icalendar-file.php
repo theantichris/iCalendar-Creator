@@ -4,7 +4,7 @@
  *
  * Contains the properties and methods used to create an iCalendar file.
  *
- * @package iCalendarFile
+ * @package iCalendarCreator
  * @version 1.0.0
  */
 
