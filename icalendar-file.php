@@ -19,6 +19,8 @@ class iCalendarFile {
 	public $event_name;
 	public $event_description;
 	public $time_zone;
+	public $time_zone_object;
+	public $utc_offset;
 	public $event_start;
 	public $event_end;
 	public $venue = array(
@@ -77,6 +79,8 @@ class iCalendarFile {
 	public function set_time_zone( $time_zone = null ) {
 		if ( !empty( $time_zone ) ) {
 			$this->time_zone = $time_zone;
+			$this->time_zone_object = new DateTimeZone( $time_zone );
+			$this->utc_offset = ( $this->time_zone_object->getOffset( new DateTime() ) ) * -1;
 		}
 	}
 
@@ -138,10 +142,10 @@ class iCalendarFile {
 	 * @return void
 	 */
 	public function create_ics_file() {
-		/** @var string $start Formatted start date and time. 14400 second are added to make it Zulu time. */
-		$start = date( 'Ymd', $this->event_start + 14400 ) . 'T' . date( 'His', $this->event_start + 14400 ) . 'Z';
-		/** @var string $end Formatted end date and time. 14400 second are added to make it Zulu time. */
-		$end = date( 'Ymd', $this->event_end + 14400 ) . 'T' . date( 'His', $this->event_end + 14400 ) . 'Z';
+		/** @var string $start Formatted start date and time. Converted to Zulu time. */
+		$start = date( 'Ymd', $this->event_start + $this->utc_offset ) . 'T' . date( 'His', $this->event_start + $this->utc_offset ) . 'Z';
+		/** @var string $end Formatted end date and time. Converted to Zulu time. */
+		$end = date( 'Ymd', $this->event_end + $this->utc_offset ) . 'T' . date( 'His', $this->event_end + $this->utc_offset ) . 'Z';
 
 		/** @var string $location Venue information combined into one string. */
 		$location = $this->venue[ 'venue_name' ] . ', ' . $this->venue[ 'venue_address' ] . ', ';
@@ -174,10 +178,10 @@ class iCalendarFile {
 	 * @return void
 	 */
 	public function html_ics_file() {
-		/** @var string $start Formatted start date and time. 14400 second are added to make it Zulu time. */
-		$start = date( 'Ymd', $this->event_start + 14400 ) . 'T' . date( 'His', $this->event_start + 14400 ) . 'Z';
-		/** @var string $end Formatted end date and time. 14400 second are added to make it Zulu time. */
-		$end = date( 'Ymd', $this->event_end + 14400 ) . 'T' . date( 'His', $this->event_end + 14400 ) . 'Z';
+		/** @var string $start Formatted start date and time. Converted to Zulu time. */
+		$start = date( 'Ymd', $this->event_start + $this->utc_offset ) . 'T' . date( 'His', $this->event_start + $this->utc_offset ) . 'Z';
+		/** @var string $end Formatted end date and time. Converted to Zulu time. */
+		$end = date( 'Ymd', $this->event_end + $this->utc_offset ) . 'T' . date( 'His', $this->event_end + $this->utc_offset ) . 'Z';
 
 		/** @var string $location Venue information combined into one string. */
 		$location = $this->venue[ 'venue_name' ] . ', ' . $this->venue[ 'venue_address' ] . ', ';
