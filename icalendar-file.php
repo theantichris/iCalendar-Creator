@@ -39,7 +39,6 @@ class iCalendarFile {
 	 *
 	 * @param integer $event_id Unique ID for the event.
 	 * @param string $event_name Name of the event.
-	 * return void
 	 */
 	public function __construct( $event_id = null, $event_name = null ) {
 		if ( ( empty( $event_id ) ) || ( !is_numeric( $event_id ) ) || ( empty( $event_name ) ) ) {
@@ -57,7 +56,8 @@ class iCalendarFile {
 	 * @since 1.0.0
 	 *
 	 * @param null|string $event_description Description of the event.
-	 * return void
+	 *
+	 * @return void
 	 */
 	public function set_event_description( $event_description = null ) {
 		if ( !empty( $event_description ) ) {
@@ -70,8 +70,9 @@ class iCalendarFile {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param null $time_zone
-	 * return void
+	 * @param null|string $time_zone
+	 *
+	 * @return void
 	 */
 	public function set_time_zone( $time_zone = null ) {
 		if ( !empty( $time_zone ) ) {
@@ -84,11 +85,12 @@ class iCalendarFile {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param null $event_start
-	 * return void
+	 * @param null|integer $event_start
+	 *
+	 * @return void
 	 */
 	public function set_event_start( $event_start = null ) {
-		if ( empty( $event_start ) ) {
+		if ( !empty( $event_start ) ) {
 			$this->event_start = $event_start;
 		}
 	}
@@ -98,11 +100,12 @@ class iCalendarFile {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param null $event_end
-	 * return void
+	 * @param null|integer $event_end
+	 *
+	 * @return void
 	 */
 	public function set_event_end( $event_end = null ) {
-		if ( empty( $event_end ) ) {
+		if ( !empty( $event_end ) ) {
 			$this->event_end = $event_end;
 		}
 	}
@@ -112,8 +115,9 @@ class iCalendarFile {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param null $venue
-	 * return void
+	 * @param null|array $venue
+	 *
+	 * @return void
 	 */
 	public function set_venue( $venue = null ) {
 		if ( ( !empty( $venue ) ) || !is_array( $venue ) ) {
@@ -126,10 +130,17 @@ class iCalendarFile {
 		}
 	}
 
+	/**
+	 * Creates the iCalendar file.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
 	public function create_ics_file() {
 		/** @var string $start Formatted start date and time. 21000 second are added to make it Zulu time. */
 		$start = date( 'Ymd', $this->event_start + 21000 ) . 'T' . date( 'His', $this->event_start + 21000 ) . 'Z';
-		/** @var string $end Formatted end date and time. 21000 second are added to make it Zulu time.  */
+		/** @var string $end Formatted end date and time. 21000 second are added to make it Zulu time. */
 		$end = date( 'Ymd', $this->event_end + 21000 ) . 'T' . date( 'His', $this->event_end + 21000 ) . 'Z';
 
 		/** @var string $location Venue information combined into one string. */
@@ -153,6 +164,40 @@ class iCalendarFile {
 		echo "DESCRIPTION: {$this->event_description}\n";
 		echo "END:VEVENT\n";
 		echo "END:VCALENDAR\n";
+	}
+
+	/**
+	 * Outputs what would be the iCalendar file as HTML.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
+	public function html_ics_file() {
+		/** @var string $start Formatted start date and time. 21000 second are added to make it Zulu time. */
+		$start = date( 'Ymd', $this->event_start + 21000 ) . 'T' . date( 'His', $this->event_start + 21000 ) . 'Z';
+		/** @var string $end Formatted end date and time. 21000 second are added to make it Zulu time. */
+		$end = date( 'Ymd', $this->event_end + 21000 ) . 'T' . date( 'His', $this->event_end + 21000 ) . 'Z';
+
+		/** @var string $location Venue information combined into one string. */
+		$location = $this->venue[ 'venue_name' ] . ', ' . $this->venue[ 'venue_address' ] . ', ';
+		$location .= $this->venue[ 'venue_address_two' ] . ', ' . $this->venue[ 'venue_city' ] . ', ';
+		$location .= $this->venue[ 'venue_state' ] . ' ' . $this->venue[ 'venue_postal_code' ];
+
+		echo "BEGIN:VCALENDAR<br />";
+		echo "VERSION:2.0<br />";
+		echo "PRODID:-//theantichris.com//NONSGML {$this->event_name}//EN<br />";
+		echo "METHOD:REQUEST<br />"; // Required by Outlook.
+		echo "BEGIN:VEVENT<br />";
+		echo "UID:" . date( 'Ymd' ) . 'T' . date( 'His' ) . "-" . rand() . "-theantichris.com<br />"; // Required by Outlook.
+		echo "DTSTAMP:" . date( 'Ymd' ) . 'T' . date( 'His' ) . "<br />"; // Required by Outlook.
+		echo "DTSTART:{$start}<br />";
+		echo "DTEND:{$end}<br />";
+		echo "LOCATION:{$location}<br />";
+		echo "SUMMARY:{$this->event_name}<br />";
+		echo "DESCRIPTION: {$this->event_description}<br />";
+		echo "END:VEVENT<br />";
+		echo "END:VCALENDAR";
 	}
 
 }
