@@ -127,9 +127,9 @@ class iCalendarFile {
 	}
 
 	public function create_ics_file() {
-		/** @var string $start Formatted start date and time. */
+		/** @var string $start Formatted start date and time. 21000 second are added to make it Zulu time. */
 		$start = date( 'Ymd', $this->event_start + 21000 ) . 'T' . date( 'His', $this->event_start + 21000 ) . 'Z';
-		/** @var string $end Formatted end date and time. */
+		/** @var string $end Formatted end date and time. 21000 second are added to make it Zulu time.  */
 		$end = date( 'Ymd', $this->event_end + 21000 ) . 'T' . date( 'His', $this->event_end + 21000 ) . 'Z';
 
 		/** @var string $location Venue information combined into one string. */
