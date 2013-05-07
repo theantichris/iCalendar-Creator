@@ -1,7 +1,7 @@
 iCalendar-Creator
 =================
 
-Class for creating iCalendar (ics) files.
+Creates iCalendar (.ics) files.
 
 
 Core iCalendar Object Fields
@@ -14,7 +14,7 @@ METHOD:REQUEST
 BEGIN:VEVENT
 UID:uid1@example.com
 DTSTAMP:19970714T170000Z
-ORGANIZER;CN=John Doe:MAILTO:john.doe@example.com
+ORGANIZER;CN=Christopher Lamm:MAILTO:chris@theantichris.com
 DTSTART:19970714T170000Z
 DTEND:19970715T035959Z
 SUMMARY:Bastille Day Party
