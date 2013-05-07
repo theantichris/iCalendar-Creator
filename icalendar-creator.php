@@ -8,7 +8,11 @@
 
 include( 'icalendar-file.php' );
 
-$icalendar = new iCalendarFile( 1, 'Test Event' );
+// $event_id = @$_GET[ 'event_id' ];
+$event_id = 1;
+$event_name = 'Test Event';
+
+$icalendar = new iCalendarFile( $event_id, $event_name );
 $icalendar->set_event_description( 'This is the description for Test Event.' );
 $icalendar->set_event_start( mktime( 8 ) );
 $icalendar->set_event_end( mktime( 18 ) );
