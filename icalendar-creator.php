@@ -6,12 +6,9 @@
  * @since 1.0.0
  */
 
-// Require the class file.
-require_once( 'icalendar-file.php' );
+require_once( 'icalendar-file.php' ); // Require the class file.
 
-/*
- * Setup data.
- */
+/* Setup data. */
 
 // $event_id = @$_GET[ 'event_id' ];
 $event_id = 1;
@@ -38,9 +35,7 @@ $venue = array(
 	'venue_postal_code' => '37912'
 );
 
-/*
- * Create iCalendar file.
- */
+/* Create iCalendar file. */
 
 $icalendar = new iCalendarFile( $event_id, $event_name );
 $icalendar->set_event_description( $event_description );
