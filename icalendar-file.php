@@ -1,30 +1,51 @@
 <?php
 /**
- * iCalendarFile class file.
+ * Class for creating an iCalendar file.
  *
- * Contains the properties and methods used to create an iCalendar file.
- *
- * @package iCalendarCreator
- * @version 1.0.0
+ * @author Christopher Lamm chris@theantichris.com
+ * @copyright 2013 Christopher Lamm
+ * @license GNU General Public License, version 3
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @link http://www.theantichris.com
  */
 
+namespace iCalendarCreator;
+
 /**
- * Class iCalendarFile
+ * Class for creating an iCalendar file.
  *
- * @since 1.0.0
+ * Accepts data and uses that to create an iCalendar (.ics) file.
+ *
+ * @author Christopher Lamm chris@theantichris.com
+ * @license GNU General Public License, version 3
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ *
+ * @version 1.0.0
  */
 class iCalendarFile {
+	/** @var int|null The unique ID for the event pass from the database that stores the event. */
 	public $event_id;
-	public $file_name;
+	/** @var null|string The name for the event. */
 	public $event_name;
+	/** @var string The iCalendar file name. */
+	public $file_name;
+	/** @var  null|string The event description. */
 	public $event_description;
+	/** @var  null|string The organizer of the event. */
 	public $organizer;
+	/** @var  null|string The email of the event organizer. */
 	public $organizer_email;
+	/** @var  null|string The event's time zone. */
 	public $time_zone;
+	/** @var  object Time zone object created from $this->time_zone. */
 	public $time_zone_object;
+	/** @var  integer Number of seconds between the event's time zone and UTC. */
 	public $utc_offset;
+	/** @var  null|integer Event start time as an Epoch time stamp. */
 	public $event_start;
+	/** @var  null|integer Event end time as an Epoch time stamp. */
 	public $event_end;
+	/** @var array Venue information for the event. */
 	public $venue = array(
 		'venue_name',
 		'venue_address',

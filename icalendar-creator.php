@@ -2,9 +2,18 @@
 /**
  * Creates an iCalendar file.
  *
- * @package iCalendarCreator
- * @since 1.0.0
+ * This page is the link the user will go to that get's the event data and creates the iCalendar file.
+ *
+ * @author Christopher Lamm chris@theantichris.com
+ * @copyright 2013 Christopher Lamm
+ * @license GNU General Public License, version 3
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @link http://www.theantichris.com
+ *
+ * @version 1.0.0
  */
+
+namespace iCalendarCreator;
 
 require_once( 'icalendar-file.php' ); // Require the class file.
 
@@ -38,6 +47,7 @@ $venue = array(
 /* Create iCalendar file. */
 
 $icalendar = new iCalendarFile( $event_id, $event_name );
+
 $icalendar->set_event_description( $event_description );
 $icalendar->set_organizer( $organizer );
 $icalendar->set_organizer_email( $organizer_email );
@@ -47,6 +57,6 @@ $icalendar->set_time_zone( $event_time_zone );
 
 $icalendar->set_venue( $venue );
 
-// $icalendar->create_ics_file();
+// $icalendar->create_ics_file(); // Creates the iCalendar file.
 
-$icalendar->html_ics_file();
+$icalendar->html_ics_file(); // Outputs the contents of the iCalendar file to HTML.
