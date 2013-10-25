@@ -10,7 +10,7 @@
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link http://www.theantichris.com
  *
- * @version 1.0.0
+ * @version 2.0.0
  */
 
 namespace iCalendarCreator;
