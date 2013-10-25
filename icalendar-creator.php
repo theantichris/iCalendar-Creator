@@ -19,8 +19,9 @@ require_once( 'icalendar-file.php' ); // Require the class file.
 
 /* Setup data. */
 
-// $event_id = @$_GET[ 'event_id' ];
-$event_id = 1;
+/*
+ * Pass any parameters in the URL and use @$_GET[ 'parameter' ] to access them.
+ */
 
 $event_name = 'Test Event';
 
@@ -46,7 +47,7 @@ $venue = array(
 
 /* Create iCalendar file. */
 
-$icalendar = new iCalendarFile( $event_id, $event_name );
+$icalendar = new iCalendarFile( $event_name );
 
 $icalendar->set_event_description( $event_description );
 $icalendar->set_organizer( $organizer );
