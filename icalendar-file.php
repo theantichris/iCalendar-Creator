@@ -2,11 +2,11 @@
 /**
  * Class for creating an iCalendar file.
  *
- * @author Christopher Lamm chris@theantichris.com
+ * @author    Christopher Lamm chris@theantichris.com
  * @copyright 2013 Christopher Lamm
- * @license GNU General Public License, version 3
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- * @link http://www.theantichris.com
+ * @license   GNU General Public License, version 3
+ * @license   http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @link      http://www.theantichris.com
  */
 
 namespace iCalendarCreator;
@@ -16,15 +16,13 @@ namespace iCalendarCreator;
  *
  * Accepts data and uses that to create an iCalendar (.ics) file.
  *
- * @author Christopher Lamm chris@theantichris.com
+ * @author  Christopher Lamm chris@theantichris.com
  * @license GNU General Public License, version 3
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
- * @version 1.0.0
+ * @version 2.0.0
  */
 class iCalendarFile {
-	/** @var int|null The unique ID for the event pass from the database that stores the event. */
-	public $event_id;
 	/** @var null|string The name for the event. */
 	public $event_name;
 	/** @var string The iCalendar file name. */
@@ -62,16 +60,14 @@ class iCalendarFile {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param integer $event_id Unique ID for the event.
 	 * @param string $event_name Name of the event.
 	 */
-	public function __construct( $event_id = null, $event_name = null ) {
-		if ( ( empty( $event_id ) ) || ( !is_numeric( $event_id ) ) || ( empty( $event_name ) ) ) {
+	public function __construct( $event_name = null ) {
+		if ( empty( $event_name ) ) {
 			die();
 		} else {
-			$this->event_id = $event_id;
 			$this->event_name = $event_name;
-			$this->file_name = strtolower( str_replace( array( ' ', "'", '.' ), array( '_', '', '' ), $event_name ) ) . '.ics';
+			$this->file_name  = strtolower( str_replace( array( ' ', "'", '.' ), array( '_', '', '' ), $event_name ) ) . '.ics';
 		}
 	}
 
@@ -131,9 +127,9 @@ class iCalendarFile {
 	 */
 	public function set_time_zone( $time_zone = null ) {
 		if ( !empty( $time_zone ) ) {
-			$this->time_zone = $time_zone;
+			$this->time_zone        = $time_zone;
 			$this->time_zone_object = new DateTimeZone( $time_zone );
-			$this->utc_offset = ( $this->time_zone_object->getOffset( new DateTime() ) ) * -1;
+			$this->utc_offset       = ( $this->time_zone_object->getOffset( new DateTime() ) ) * -1;
 		}
 	}
 
@@ -178,11 +174,11 @@ class iCalendarFile {
 	 */
 	public function set_venue( $venue = null ) {
 		if ( ( !empty( $venue ) ) || !is_array( $venue ) ) {
-			$this->venue[ 'venue_name' ] = $venue[ 'venue_name' ];
-			$this->venue[ 'venue_address' ] = $venue[ 'venue_address' ];
+			$this->venue[ 'venue_name' ]        = $venue[ 'venue_name' ];
+			$this->venue[ 'venue_address' ]     = $venue[ 'venue_address' ];
 			$this->venue[ 'venue_address_two' ] = $venue[ 'venue_address_two' ];
-			$this->venue[ 'venue_city' ] = $venue[ 'venue_city' ];
-			$this->venue[ 'venue_state' ] = $venue[ 'venue_state' ];
+			$this->venue[ 'venue_city' ]        = $venue[ 'venue_city' ];
+			$this->venue[ 'venue_state' ]       = $venue[ 'venue_state' ];
 			$this->venue[ 'venue_postal_code' ] = $venue[ 'venue_postal_code' ];
 		}
 	}
