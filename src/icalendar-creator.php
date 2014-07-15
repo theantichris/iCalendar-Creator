@@ -1,17 +1,4 @@
 <?php
-/**
- * Creates an iCalendar file.
- *
- * This page is the link the user will go to that get's the event data and creates the iCalendar file.
- *
- * @author Christopher Lamm chris@theantichris.com
- * @copyright 2013 Christopher Lamm
- * @license GNU General Public License, version 3
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- * @link http://www.theantichris.com
- *
- * @version 2.0.0
- */
 
 namespace theantichris\iCalendarCreator;
 

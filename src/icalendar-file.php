@@ -1,27 +1,7 @@
 <?php
-/**
- * Class for creating an iCalendar file.
- *
- * @author    Christopher Lamm chris@theantichris.com
- * @copyright 2013 Christopher Lamm
- * @license   GNU General Public License, version 3
- * @license   http://opensource.org/licenses/gpl-license.php GNU Public License
- * @link      http://www.theantichris.com
- */
 
 namespace theantichris\iCalendarCreator;
 
-/**
- * Class for creating an iCalendar file.
- *
- * Accepts data and uses that to create an iCalendar (.ics) file.
- *
- * @author  Christopher Lamm chris@theantichris.com
- * @license GNU General Public License, version 3
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- *
- * @version 2.0.0
- */
 class iCalendarFile
 {
     /** @var null|string The name for the event. */
@@ -54,15 +34,6 @@ class iCalendarFile
         'venue_postal_code'
     );
 
-    /**
-     * Object constructor.
-     *
-     * If the event name isn't empty and the event ID exists and is an integer a new object will be created.
-     *
-     * @since 1.0.0
-     *
-     * @param string $event_name Name of the event.
-     */
     public function __construct($event_name = null)
     {
         if (empty($event_name)) {
@@ -73,15 +44,6 @@ class iCalendarFile
         }
     }
 
-    /**
-     * Checks for, validates, and assigns the event description.
-     *
-     * @since 1.0.0
-     *
-     * @param null|string $event_description Description of the event.
-     *
-     * @return void
-     */
     public function set_event_description($event_description = null)
     {
         if (!empty($event_description)) {
@@ -89,15 +51,6 @@ class iCalendarFile
         }
     }
 
-    /**
-     * Checks for, validates, and assigns the event organizer.
-     *
-     * @since 1.0.0
-     *
-     * @param null|string $organizer Organizer of the event.
-     *
-     * @return void
-     */
     public function set_organizer($organizer = null)
     {
         if (!empty($organizer)) {
@@ -105,15 +58,6 @@ class iCalendarFile
         }
     }
 
-    /**
-     * Checks for, validates, and assigns the event organizer's email.
-     *
-     * @since 1.0.0
-     *
-     * @param null|string $organizer_email Organizer's email.
-     *
-     * @return void
-     */
     public function set_organizer_email($organizer_email = null)
     {
         if (!empty($organizer_email)) {
@@ -121,15 +65,6 @@ class iCalendarFile
         }
     }
 
-    /**
-     * Checks for, validates, and assigns the time zone.
-     *
-     * @since 1.0.0
-     *
-     * @param null|string $time_zone
-     *
-     * @return void
-     */
     public function set_time_zone($time_zone = null)
     {
         if (!empty($time_zone)) {
@@ -139,15 +74,6 @@ class iCalendarFile
         }
     }
 
-    /**
-     * Checks for, validates, and assigns the event start time.
-     *
-     * @since 1.0.0
-     *
-     * @param null|integer $event_start
-     *
-     * @return void
-     */
     public function set_event_start($event_start = null)
     {
         if (!empty($event_start)) {
@@ -155,15 +81,6 @@ class iCalendarFile
         }
     }
 
-    /**
-     * Checks for, validates, and assigns the event end time.
-     *
-     * @since 1.0.0
-     *
-     * @param null|integer $event_end
-     *
-     * @return void
-     */
     public function set_event_end($event_end = null)
     {
         if (!empty($event_end)) {
@@ -171,15 +88,6 @@ class iCalendarFile
         }
     }
 
-    /**
-     * Checks for, validates, and assigns the venue.
-     *
-     * @since 1.0.0
-     *
-     * @param null|array $venue
-     *
-     * @return void
-     */
     public function set_venue($venue = null)
     {
         if ((!empty($venue)) || !is_array($venue)) {
@@ -192,13 +100,6 @@ class iCalendarFile
         }
     }
 
-    /**
-     * Creates the iCalendar file.
-     *
-     * @since 1.0.0
-     *
-     * @return void
-     */
     public function create_ics_file()
     {
         /** @var string $start Formatted start date and time. Converted to Zulu time. */
@@ -230,13 +131,6 @@ class iCalendarFile
         echo "END:VCALENDAR\n";
     }
 
-    /**
-     * Outputs what would be the iCalendar file as HTML.
-     *
-     * @since 1.0.0
-     *
-     * @return void
-     */
     public function html_ics_file()
     {
         /** @var string $start Formatted start date and time. Converted to Zulu time. */
