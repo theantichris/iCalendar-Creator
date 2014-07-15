@@ -8,21 +8,21 @@ class iCalendarFile
     public $event_name;
     /** @var string The iCalendar file name. */
     public $file_name;
-    /** @var  null|string The event description. */
+    /** @var null|string The event description. */
     public $event_description;
-    /** @var  null|string The organizer of the event. */
+    /** @var null|string The organizer of the event. */
     public $organizer;
-    /** @var  null|string The email of the event organizer. */
+    /** @var null|string The email of the event organizer. */
     public $organizer_email;
-    /** @var  null|string The event's time zone. */
+    /** @var null|string The event's time zone. */
     public $time_zone;
-    /** @var  object Time zone object created from $this->time_zone. */
+    /** @var object Time zone object created from $this->time_zone. */
     public $time_zone_object;
-    /** @var  integer Number of seconds between the event's time zone and UTC. */
+    /** @var integer Number of seconds between the event's time zone and UTC. */
     public $utc_offset;
-    /** @var  null|integer Event start time as an Epoch time stamp. */
+    /** @var null|integer Event start time as an Epoch time stamp. */
     public $event_start;
-    /** @var  null|integer Event end time as an Epoch time stamp. */
+    /** @var null|integer Event end time as an Epoch time stamp. */
     public $event_end;
     /** @var array Venue information for the event. */
     public $venue = array(
