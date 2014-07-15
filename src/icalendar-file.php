@@ -9,7 +9,7 @@
  * @link      http://www.theantichris.com
  */
 
-namespace iCalendarCreator;
+namespace theantichris\iCalendarCreator;
 
 /**
  * Class for creating an iCalendar file.

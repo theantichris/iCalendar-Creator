@@ -13,7 +13,7 @@
  * @version 2.0.0
  */
 
-namespace iCalendarCreator;
+namespace theantichris\iCalendarCreator;
 
 require_once('icalendar-file.php'); // Require the class file.
 
