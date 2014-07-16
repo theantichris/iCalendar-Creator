@@ -83,9 +83,7 @@ class iCalendar
      */
     public function getEventStart()
     {
-        $timestamp = $this->eventStart->getTimestamp() + $this->eventStart->getOffset();
-
-        return date('Ymd', $timestamp . 'T' . date('His', $timestamp) . 'Z');
+        return $this->generateTimeString($this->eventStart);
     }
 
     /**
@@ -95,9 +93,21 @@ class iCalendar
      */
     public function getEventEnd()
     {
-        $timestamp = $this->eventEnd->getTimestamp() + $this->eventEnd->getOffset();
+        return $this->generateTimeString($this->eventEnd);
+    }
 
-        return date('Ymd', $timestamp . 'T' . date('His', $timestamp) . 'Z');
+    /**
+     * Returns a date formatted as "20140716 T 030600 Z".
+     *
+     * @since 1.0.0
+     *
+     * @param \DateTime $dateTime
+     * @return string
+     */
+    private function generateTimeString($dateTime){
+        $timestamp = $dateTime->getTimestamp() + $dateTime->getOffset();
+
+        return date('Ymd', $timestamp) . 'T' . date('His', $timestamp) . 'Z';
     }
 
     /**
