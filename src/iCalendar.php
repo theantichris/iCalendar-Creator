@@ -104,7 +104,8 @@ class iCalendar
      * @param \DateTime $dateTime
      * @return string
      */
-    private function generateTimeString($dateTime){
+    private function generateTimeString($dateTime)
+    {
         $timestamp = $dateTime->getTimestamp() + $dateTime->getOffset();
 
         return date('Ymd', $timestamp) . 'T' . date('His', $timestamp) . 'Z';
@@ -117,6 +118,10 @@ class iCalendar
      */
     public function getEventLocation()
     {
+        if (empty($this->eventLocation)) {
+            return '';
+        }
+
         return $this->eventLocation->__toString();
     }
 
