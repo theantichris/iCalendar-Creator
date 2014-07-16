@@ -33,4 +33,14 @@ class iCalendar
         $this->organizerName    = $organizerName;
         $this->organizerEmail   = $organizerEmail;
     }
+
+    /**
+     * @since 1.0.0
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return strtolower(str_replace(array(' ', "'", '.'), array('_', '', ''), $this->eventName));
+    }
 }
