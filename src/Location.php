@@ -42,4 +42,16 @@ class Location
         $this->state      = $state;
         $this->postalCode = $postalCode;
     }
+
+    public function __toString()
+    {
+        $location = $this->name . ', ';
+        $location .= $this->address1 . ', ';
+        $location .= $this->address2 . ', ';
+        $location .= $this->city . ', ';
+        $location .= $this->state . ' ';
+        $location .= $this->postalCode;
+
+        return $location;
+    }
 } 

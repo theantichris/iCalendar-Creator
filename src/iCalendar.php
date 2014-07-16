@@ -103,11 +103,11 @@ class iCalendar
     /**
      * @since 1.0.0
      *
-     * @return null|Location
+     * @return string
      */
     public function getEventLocation()
     {
-        return $this->eventLocation;
+        return $this->eventLocation->__toString();
     }
 
     /**
