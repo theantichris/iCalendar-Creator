@@ -29,7 +29,15 @@ class iCalendarCreator
         echo "PRODID:-//{$iCalendar->getOrganizerName()}//NONSGML {$iCalendar->getEventName()}//EN\n";
         echo "METHOD:REQUEST\n";
         echo "BEGIN:VEVENT\n";
-        echo "UID:" . date('Ymd') . 'T' . date('His') . "-" . rand() . "-{$iCalendar->getOrganizerName()}\n";
+        echo "UID:" . date('Ymd') . 'T' . date('His') . "-" . rand();
+
+        /** @var string $organizerName */
+        $organizerName = $iCalendar->getOrganizerName();
+
+        if (!empty($organizerName)) {
+            echo "-{$organizerName}\n";
+        }
+
         echo "DTSTAMP:" . date('Ymd') . 'T' . date('His') . "\n";
         echo "ORGANIZER:CN={$iCalendar->getOrganizerName()}:MAILTO:{$iCalendar->getOrganizerEmail()}\n";
         echo "DTSTART:{$iCalendar->getEventStart()}\n";
@@ -55,7 +63,16 @@ class iCalendarCreator
         echo "PRODID:-//{$iCalendar->getOrganizerName()}//NONSGML {$iCalendar->getEventName()}//EN<br />";
         echo "METHOD:REQUEST<br />";
         echo "BEGIN:VEVENT<br />";
-        echo "UID:" . date('Ymd') . 'T' . date('His') . "-" . rand() . "-{$iCalendar->getOrganizerName()}<br />";
+        echo "UID:" . date('Ymd') . 'T' . date('His') . "-" . rand();
+
+        /** @var string $organizerName */
+        $organizerName = $iCalendar->getOrganizerName();
+
+        if (!empty($organizerName)) {
+            echo "-{$organizerName}";
+        }
+
+        echo "<br />";
         echo "DTSTAMP:" . date('Ymd') . 'T' . date('His') . "<br />";
         echo "ORGANIZER:CN={$iCalendar->getOrganizerName()}:MAILTO:{$iCalendar->getOrganizerEmail()}<br />";
         echo "DTSTART:{$iCalendar->getEventStart()}<br />";
