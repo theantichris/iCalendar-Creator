@@ -39,7 +39,7 @@ class iCalendarCreator
         }
 
         echo "DTSTAMP:" . date('Ymd') . 'T' . date('His') . "\n";
-        echo "ORGANIZER:CN={$iCalendar->getOrganizerName()}:MAILTO:{$iCalendar->getOrganizerEmail()}\n";
+        echo "ORGANIZER:CN={$organizerName()}:MAILTO:{$iCalendar->getOrganizerEmail()}\n";
         echo "DTSTART:{$iCalendar->getEventStart()}\n";
         echo "DTEND:{$iCalendar->getEventEnd()}\n";
         echo "LOCATION:{$iCalendar->getEventLocation()}\n";
@@ -74,7 +74,7 @@ class iCalendarCreator
 
         echo "<br />";
         echo "DTSTAMP:" . date('Ymd') . 'T' . date('His') . "<br />";
-        echo "ORGANIZER:CN={$iCalendar->getOrganizerName()}:MAILTO:{$iCalendar->getOrganizerEmail()}<br />";
+        echo "ORGANIZER:CN={$organizerName}:MAILTO:{$iCalendar->getOrganizerEmail()}<br />";
         echo "DTSTART:{$iCalendar->getEventStart()}<br />";
         echo "DTEND:{$iCalendar->getEventEnd()}<br />";
         echo "LOCATION:{$iCalendar->getEventLocation()}<br />";
