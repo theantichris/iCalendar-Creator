@@ -28,14 +28,14 @@ class iCalendar
      * @since 1.0.0
      *
      * @param string $eventName
-     * @param string $eventDescription
      * @param \DateTime|null $eventStart
      * @param \DateTime|null $eventEnd
+     * @param string $eventDescription
      * @param Location|null $eventLocation
      * @param string $organizerName
      * @param string $organizerEmail
      */
-    function __construct($eventName, $eventDescription = '', \DateTime $eventStart = null, \DateTime $eventEnd = null, Location $eventLocation = null, $organizerName = '', $organizerEmail = '')
+    function __construct($eventName, \DateTime $eventStart, \DateTime $eventEnd, $eventDescription = '', Location $eventLocation = null, $organizerName = '', $organizerEmail = '')
     {
         $this->eventName        = $eventName;
         $this->eventDescription = $eventDescription;
@@ -83,10 +83,6 @@ class iCalendar
      */
     public function getEventStart()
     {
-        if (empty($this->eventStart)) {
-            return '';
-        }
-
         $timestamp = $this->eventStart->getTimestamp() + $this->eventStart->getOffset();
 
         return date('Ymd', $timestamp . 'T' . date('His', $timestamp) . 'Z');
@@ -99,10 +95,6 @@ class iCalendar
      */
     public function getEventEnd()
     {
-        if (empty($this->eventStart)) {
-            return '';
-        }
-
         $timestamp = $this->eventEnd->getTimestamp() + $this->eventEnd->getOffset();
 
         return date('Ymd', $timestamp . 'T' . date('His', $timestamp) . 'Z');
