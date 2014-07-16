@@ -79,21 +79,25 @@ class iCalendar
     /**
      * @since 1.0.0
      *
-     * @return \DateTime|null
+     * @return string
      */
     public function getEventStart()
     {
-        return $this->eventStart;
+        $timestamp = $this->eventStart->getTimestamp() + $this->eventStart->getOffset();
+
+        return date('Ymd', $timestamp . 'T' . date('His', $timestamp) . 'Z');
     }
 
     /**
      * @since 1.0.0
      *
-     * @return \DateTime|null
+     * @return string
      */
     public function getEventEnd()
     {
-        return $this->eventEnd;
+        $timestamp = $this->eventEnd->getTimestamp() + $this->eventEnd->getOffset();
+
+        return date('Ymd', $timestamp . 'T' . date('His', $timestamp) . 'Z');
     }
 
     /**
