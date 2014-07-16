@@ -97,7 +97,7 @@ class iCalendar
     }
 
     /**
-     * Returns a date formatted as "20140716 T 030600 Z".
+     * Returns a date formatted as "20140716T030600Z".
      *
      * @since 1.0.0
      *
