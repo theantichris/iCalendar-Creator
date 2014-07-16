@@ -10,11 +10,17 @@ namespace theantichris\iCalendarCreator;
  */
 class Location
 {
+    /** @var string Name */
     private $name;
+    /** @var string Address line 1. */
     private $address1;
+    /** @var string Address line 2 */
     private $address2;
+    /** @var string City */
     private $city;
+    /** @var string State */
     private $state;
+    /** @var string Postal code */
     private $postalCode;
 
     /**
