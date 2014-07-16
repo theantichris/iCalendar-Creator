@@ -24,10 +24,11 @@ The constructor accepts name, address line 1, address line 2, city, state, and p
 
 Stores and outputs the needed information for the ICS file.
 
-The constructor accepts event name (string), event description (string), event start (DateTime), event end (DateTime),
-location (Location), organizer name (string), and organizer email (string). Only event name is required.
+The constructor accepts event name (string), event start (DateTime), event end (DateTime), event description (string),
+location (Location), organizer name (string), and organizer email (string). Only event name, event start, and event end
+are required.
 
-    new iCalendar($eventName, $eventDescription, $eventStart, $eventEnd, $eventLocation, $organizerName, $organizerEmail);
+    new iCalendar($eventName, $eventStart, $eventEnd, $eventDescription, $eventLocation, $organizerName, $organizerEmail);
 
 ### iCalendarCreator
 
