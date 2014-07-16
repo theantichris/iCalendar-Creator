@@ -83,6 +83,10 @@ class iCalendar
      */
     public function getEventStart()
     {
+        if (empty($this->eventStart)) {
+            return '';
+        }
+
         $timestamp = $this->eventStart->getTimestamp() + $this->eventStart->getOffset();
 
         return date('Ymd', $timestamp . 'T' . date('His', $timestamp) . 'Z');
@@ -95,6 +99,10 @@ class iCalendar
      */
     public function getEventEnd()
     {
+        if (empty($this->eventStart)) {
+            return '';
+        }
+
         $timestamp = $this->eventEnd->getTimestamp() + $this->eventEnd->getOffset();
 
         return date('Ymd', $timestamp . 'T' . date('His', $timestamp) . 'Z');
