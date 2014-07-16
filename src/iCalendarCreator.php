@@ -26,13 +26,14 @@ class iCalendarCreator
 
         echo "BEGIN:VCALENDAR\n";
         echo "VERSION:2.0\n";
-        echo "PRODID:-//{$iCalendar->getOrganizerName()}//NONSGML {$iCalendar->getEventName()}//EN\n";
-        echo "METHOD:REQUEST\n";
-        echo "BEGIN:VEVENT\n";
-        echo "UID:" . date('Ymd') . 'T' . date('His') . "-" . rand();
 
         /** @var string $organizerName */
         $organizerName = $iCalendar->getOrganizerName();
+
+        echo "PRODID:-//{$organizerName}//NONSGML {$iCalendar->getEventName()}//EN\n";
+        echo "METHOD:REQUEST\n";
+        echo "BEGIN:VEVENT\n";
+        echo "UID:" . date('Ymd') . 'T' . date('His') . "-" . rand();
 
         if (!empty($organizerName)) {
             echo "-{$organizerName}\n";
@@ -60,13 +61,14 @@ class iCalendarCreator
     {
         echo "BEGIN:VCALENDAR<br />";
         echo "VERSION:2.0<br />";
-        echo "PRODID:-//{$iCalendar->getOrganizerName()}//NONSGML {$iCalendar->getEventName()}//EN<br />";
-        echo "METHOD:REQUEST<br />";
-        echo "BEGIN:VEVENT<br />";
-        echo "UID:" . date('Ymd') . 'T' . date('His') . "-" . rand();
 
         /** @var string $organizerName */
         $organizerName = $iCalendar->getOrganizerName();
+
+        echo "PRODID:-//{$organizerName}//NONSGML {$iCalendar->getEventName()}//EN<br />";
+        echo "METHOD:REQUEST<br />";
+        echo "BEGIN:VEVENT<br />";
+        echo "UID:" . date('Ymd') . 'T' . date('His') . "-" . rand();
 
         if (!empty($organizerName)) {
             echo "-{$organizerName}";
