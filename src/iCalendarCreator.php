@@ -2,6 +2,11 @@
 
 namespace theantichris\iCalendarCreator;
 
+/**
+ * Class iCalendarCreator
+ * @package theantichris\iCalendarCreator
+ * @since 1.0.0
+ */
 class iCalendarCreator
 {
     public static function createIcsFile(iCalendar $iCalendar)

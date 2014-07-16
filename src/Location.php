@@ -43,6 +43,12 @@ class Location
         $this->postalCode = $postalCode;
     }
 
+    /**
+     * Returns the location in the proper format for an ICS file.
+     * @since 1.0.0
+     *
+     * @return string
+     */
     public function __toString()
     {
         $location = $this->name . ', ';
