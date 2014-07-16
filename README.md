@@ -32,9 +32,17 @@ are required.
 
 ### iCalendarCreator
 
-This class has one static method that generates the ICS file.
+This class has two static method for creating and viewing an ICS file.
 
-The constructor requires an iCalendar object.
+#### createIcsFile
+
+This method generates an ICS file based on the iCalendar object passed in.
 
     iCalendarCreator::createIcsFile($iCalendar);
+
+#### viewIcsFile
+
+This method echoes the content of the ICS file.
+
+    iCalendarCreator::viewIcsFile($iCalendar);
 
