@@ -63,7 +63,7 @@ class iCalendar
      */
     public function getSlug()
     {
-        return strtolower(str_replace(array(' ', "'", '.'), array('_', '', ''), $this->eventName));
+        return strtolower(str_replace(array(' ', "'", '.'), array('-', '', ''), $this->eventName));
     }
 
     /**

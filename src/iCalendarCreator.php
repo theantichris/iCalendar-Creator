@@ -11,8 +11,11 @@ class iCalendarCreator
 {
     public static function createIcsFile(iCalendar $iCalendar)
     {
+        /** @var string $fileName */
+        $fileName = $iCalendar->getSlug() . '.ics';
+
         header("Content-Type: text/Calendar; charset=utf-8");
-        header("Content-Disposition: inline; filename={$iCalendar->getSlug()}");
+        header("Content-Disposition: inline; filename={$fileName}");
 
         echo "BEGIN:VCALENDAR\n";
         echo "VERSION:2.0\n";
