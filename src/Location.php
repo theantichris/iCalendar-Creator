@@ -2,6 +2,12 @@
 
 namespace theantichris\iCalendarCreator;
 
+/**
+ * Class Location
+ * Holds location information to use in the ICS file.
+ * @package theantichris\iCalendarCreator
+ * @since 1.0.0
+ */
 class Location
 {
     private $name;
