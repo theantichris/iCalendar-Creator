@@ -14,7 +14,7 @@ class iCalendarCreator
         echo "PRODID:-//{$iCalendar->getOrganizerName()}//NONSGML {$iCalendar->getEventName()}//EN\n";
         echo "METHOD:REQUEST\n";
         echo "BEGIN:VEVENT\n";
-        echo "UID:" . date('Ymd') . 'T' . date('His') . "-" . rand() . "-{$iCalendar->getOrganizerName()}\n"; // Required by Outlook.
+        echo "UID:" . date('Ymd') . 'T' . date('His') . "-" . rand() . "-{$iCalendar->getOrganizerName()}\n";
         echo "DTSTAMP:" . date('Ymd') . 'T' . date('His') . "\n";
         echo "ORGANIZER:CN={$iCalendar->getOrganizerName()}:MAILTO:{$iCalendar->getOrganizerEmail()}\n";
         echo "DTSTART:{$iCalendar->getEventStart()}\n";
