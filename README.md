@@ -7,7 +7,7 @@ Creates iCalendar (.ics) files.
 Include the package in your composer.json file.
 
     "require": {
-            "theantichris/icalendar-creator": "*"
+            "theantichris/icalendar-creator": "v1.0.0"
     },
 
 ## Classes
