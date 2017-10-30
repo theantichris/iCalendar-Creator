@@ -85,4 +85,44 @@ class iCalendarCreator
         echo "END:VEVENT<br />";
         echo "END:VCALENDAR<br />";
     }
+
+	/**
+	 * Create and return a string containing the ICS file
+	 * To be used when you need the ICS file as an attachment to an email
+	 * @since 1.0.1
+	 * @param iCalendar $iCalendar
+	 * @param string $uid optional uid for this event. This is needed if you want to send an update for the same event
+	 *
+	 * @return string
+	 */
+	public static function icsFileAsString(iCalendar $iCalendar, $uid='') {
+		// get organiser name if available
+		$organizerName = $iCalendar->getOrganizerName();
+
+		$ics[0] = "BEGIN:VCALENDAR";
+		$ics[1] = "VERSION:2.0";
+		$ics[2] = "PRODID:-//{$organizerName}//NONSGML {$iCalendar->getEventName()}//EN";
+		$ics[3] = "METHOD:REQUEST";
+		$ics[4] = "BEGIN:VEVENT";
+		// use a given uid or generate a new one
+		if($uid === '') {
+			$ics[5] = "UID:" . date('Ymd') . 'T' . date('His') . "-" . rand();
+			if (!empty($organizerName)) {
+				echo "-{$organizerName}";
+			}
+		} else {
+			$ics[5] = $uid;
+		}
+		$ics[6] = "DTSTAMP:" . date('Ymd') . 'T' . date('His') . "";
+		$ics[7] = "ORGANIZER:CN={$organizerName}:MAILTO:{$iCalendar->getOrganizerEmail()}";
+		$ics[8] = "DTSTART:{$iCalendar->getEventStart()}";
+		$ics[9] = "DTEND:{$iCalendar->getEventEnd()}";
+		$ics[10] = "LOCATION:{$iCalendar->getEventLocation()}";
+		$ics[11] = "SUMMARY:{$iCalendar->getEventName()}";
+		$ics[12] = "DESCRIPTION: {$iCalendar->getEventDescription()}";
+		$ics[13] = "END:VEVENT";
+		$ics[14] = "END:VCALENDAR";
+		return implode("\r\n", $ics);
+	}
+
 }
